@@ -1,15 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Foot Ball Apps</title>
-    <link rel="stylesheet" href="./public/style/main.css" />
+    <link rel="stylesheet" href="profoot.css" />
+    <link rel="stylesheet" href="./style/Duha.css" />
+  <script src="https://kit.fontawesome.com/c228b3c45c.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <script src="./js/main.js"></script>
+  <div class="contenar-body">
+    <nav class="nav">
+      <ul>
+        <li><a><i class="fas fa-futbol fa-2x"></i></a></li>
+
+        <li><a href="#" class="nav-link">Home</a></li>
+      </ul>
+    </nav>
+    <section class="contenar">
+      <label class="label" for="Areas">Choose Area:</label>
+      <select id="drop1" class="content-select">
+        <option value="Asia">Asia</option>
+        <option value="Africa">Africa</option>
+        <option value=" North America"> North America</option>
+        <option value="South America">South America</option>
+        <option value=" Antarctica"> Antarctica</option>
+        <option value="Europe">Europe</option>
+        <option value="Australia">Australia</option>
+
+      </select>
+      <label class="label" for="competitions">competitions:</label>
+      <select id="drop2" class="content-select">
+        <option value="Inter Milan">Inter Milan</option>
+        <option value="AS Roma">AS Roma</option>
+        <option value="Tottenham Hotspur">Tottenham Hotspur</option>
+        <option value="Borussia Dortmund">Borussia Dortmunde</option>
+        <option value="Manchester City">Manchester City</option>
+        <option value="Paris Saint-Germain">Paris Saint-Germain</option>
+        <option value="AC Milan">AC Milan</option>
+        <option value=" FC Bayern Munich"> FC Bayern Munich</option>
+
+      </select>
+
+
+      <label class="label" for="teams">Team:</label>
+      <select id="drop3" class="content-select">
+        <option value="Inter Milan">Inter Milan</option>
+        <option value="AS Roma">AS Roma</option>
+        <option value="Tottenham Hotspur">Tottenham Hotspur</option>
+        <option value="Borussia Dortmund">Borussia Dortmunde</option>
+        <option value="Manchester City">Manchester City</option>
+        <option value="Paris Saint-Germain">Paris Saint-Germain</option>
+        <option value="AC Milan">AC Milan</option>
+      </select>
+    </section>
+    <section class="contenar2">
+
+     
+      <table style="width:80%" id="tabel"class=content-table">
+        <thead>
+          <tr>
+            <th class="col-40">Name</th>
+            <th class="col-33">season_start/season_end</th>
+            <th class="col-33"></th>
+            
+          </tr>
+        </thead>
+        <tbody id="tbcontant">
+          <!-- <tr>
+            <td class="col-40-1">Primera Division <img src="https://media.api-football.com/leagues/87.png" alt="logo"></td>
+            <td class="col-33">2018-08-17/2019-05-19</td>
+            <td class="col-33"></td>
+          </tr>
+          <tr>
+            <td class="col-40"></td>
+            <td class="col-33"></td>
+            <td class="col-33"></td>
+            
+          </tr>
+          <tr>
+            <td class="col-40"></td>
+            <td class="col-33"></td>
+            <td class="col-33"></td>
+          </tr> -->
+        </tbody>
+      </table>
+    </section>
+  </div>
+  <script src="./js/duha.js"></script>
 </body>
+
+
 
 </html>
