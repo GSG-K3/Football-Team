@@ -1,13 +1,17 @@
 const leagueOfCuntry = (error, response, body) => {
-  //if (!error && response.statusCode == 200) {
-  console.log('inside respons');
+  console.log('in callback');
+  if (error) {
+    console.log(error);
+    return;
+  }
 
-  const info = JSON.parse(body);
+  if (!error && response.statusCode == 200) {
+    console.log('inside respons');
 
-  console.log(info);
-  //console.log(info.stargazers_count + " Stars");
-  //console.log(info.forks_count + " Forks");
-  //}
+    const info = JSON.parse(body);
+    console.log(info);
+    return info;
+  } else console.log('Error  ,  status ', response.statusCode);
 };
 
 module.exports = leagueOfCuntry;
