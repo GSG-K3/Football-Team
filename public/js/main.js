@@ -17,6 +17,8 @@ let apicall = (method, url, callback) => {
   xhr.send();
 };
 
+
+if(county !==null)
 county.addEventListener('change', e => {
   let countyVal = e.target.value;
 
@@ -38,6 +40,8 @@ county.addEventListener('change', e => {
 
 
 
+
+if(CompetitionsSeason !==null)
 CompetitionsSeason.addEventListener('change', e => {
   let season = e.target.value;
   let countyVal = county.value;
@@ -49,7 +53,6 @@ CompetitionsSeason.addEventListener('change', e => {
     createRowTabble(data)
   });
 });
-
 
 
 function createRowTabble (data)
@@ -97,4 +100,69 @@ function createRowTabble (data)
   
     tbody.appendChild(tr);
   });
+}
+
+
+
+function GetTeams()
+{
+    let str =window.location.href;
+ 
+
+let leagId = str.slice(str.lastIndexOf('/')+1)
+
+
+apicall('POST', `/leagues/teams/${leagId}`, res => {
+  console.log(JSON.parse(res));
+  let data = JSON.parse(res).api.teams;
+  console.log(data);
+
+  const tbody = document.getElementById('tbcontant');
+  tbody.innerHTML = null;
+
+
+  data.forEach(team => {
+
+  const tr =document.createElement('tr')
+    
+    const td1 =document.createElement('td')
+    td1.classList.add('col-40-1')
+    const span = document.createElement('span')
+    span.innerText = team.name;
+    
+    td1.appendChild(span)
+    
+    const img = document.createElement('img');
+    img.src = team.logo;
+    img.setAttribute('alt','logo')
+    td1.appendChild(img)
+    
+
+     
+    const td2 =document.createElement('td')
+    td2.classList.add('col-33')
+    const span2 = document.createElement('span')
+    span2.innerText = team.venue_name;
+    td2.appendChild(span2)
+     
+    const td3 =document.createElement('td')
+    td2.classList.add('col-33')
+    const span3 = document.createElement('span')
+    span3.innerText = team.venue_city;
+    td3.appendChild(span3)
+    
+    
+
+    tr.appendChild(td1)
+    tr.appendChild(td2)
+    tr.appendChild(td3)
+    
+    
+   tbody.appendChild(tr)
+  });
+
+});
+
+///
+
 }
