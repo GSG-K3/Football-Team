@@ -14,11 +14,12 @@ As a user, he can pick any country he likes.<br>
 As a user, through the click on any country can get the leagues in this country and display the league is start and finish .<br> 
 As a user, through the click on any league it display the league team.<br>
 
-#how to run
-1- clone
-2- run npm i
-3- run npm start
-4- open your browser and typeing url : localhost:3000  
+#  to run
+
+1- clone <br>
+2- run npm i <br>
+3- run npm start <br>
+4- open your browser and typeing url : localhost:3000  <br>
 
 
 Team:<br>
