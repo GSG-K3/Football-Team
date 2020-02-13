@@ -1,8 +1,6 @@
 const request = require('request');
 
 const apiCall = (remotUrl, callback) => {
-  console.log(remotUrl);
-
   const options = {
     url: remotUrl,
     headers: {
@@ -10,7 +8,6 @@ const apiCall = (remotUrl, callback) => {
       'x-rapidapi-key': 'ebbdffef82msh4220b78cd4635c3p115d66jsn4859aa085a9f'
     }
   };
-  console.log(options);
   request(options, callback);
 };
 
