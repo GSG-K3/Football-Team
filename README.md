@@ -1,4 +1,7 @@
 # Football-Team
+
+page : https://gsg-k3.github.io/Football-Team/.
+
 # Description
 our projects displays the leagues team football in each country, and display the when the league is start and finish .
 when click the league team it display the team that exist in its country . 
@@ -10,6 +13,12 @@ when click the league team it display the team that exist in its country .
 As a user, he can pick any country he likes.<br>
 As a user, through the click on any country can get the leagues in this country and display the league is start and finish .<br> 
 As a user, through the click on any league it display the league team.<br>
+
+#how to run
+1- clone
+2- run npm i
+3- run npm start
+4- open your browser and typeing url : localhost:3000  
 
 
 Team:<br>
