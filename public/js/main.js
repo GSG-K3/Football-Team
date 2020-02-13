@@ -17,152 +17,129 @@ let apicall = (method, url, callback) => {
   xhr.send();
 };
 
+if (county !== null)
+  county.addEventListener('change', e => {
+    let countyVal = e.target.value;
 
-if(county !==null)
-county.addEventListener('change', e => {
-  let countyVal = e.target.value;
+    if (countyVal === '0') {
+      CompetitionsSeason.classList.add('hide');
+      alert('please choose the County');
+      return;
+    }
+    CompetitionsSeason.classList.add('show');
 
-  if(countyVal ==='0')
-  {
-    CompetitionsSeason.classList.add("hide");
-    alert("please choose the County");
-    return;
-  }
-  CompetitionsSeason.classList.add("show");
-  
-  apicall('GET', `/leagues/${countyVal}`, res => {
-    console.log(JSON.parse(res));
-    let data = JSON.parse(res).api.leagues;
-    console.log(data);
-    createRowTabble(data)
+    apicall('GET', `/leagues/${countyVal}`, res => {
+      console.log(JSON.parse(res));
+      let data = JSON.parse(res).api.leagues;
+      console.log(data);
+      createRowTabble(data);
+    });
   });
-});
 
+if (CompetitionsSeason !== null)
+  CompetitionsSeason.addEventListener('change', e => {
+    let season = e.target.value;
+    let countyVal = county.value;
 
-
-
-if(CompetitionsSeason !==null)
-CompetitionsSeason.addEventListener('change', e => {
-  let season = e.target.value;
-  let countyVal = county.value;
-  
-  apicall('GET', `/leagues/${countyVal}/season/${season}`, res => {
-    console.log(res);
-    let data = JSON.parse(res).api.leagues;
-    console.log(data);
-    createRowTabble(data)
+    apicall('GET', `/leagues/${countyVal}/season/${season}`, res => {
+      console.log(res);
+      let data = JSON.parse(res).api.leagues;
+      console.log(data);
+      createRowTabble(data);
+    });
   });
-});
 
-
-function createRowTabble (data)
-{
-  if(data === undefined) return;
-  if(!Array.isArray(data)) return
-  if(data.length ==0) return;
+function createRowTabble(data) {
+  if (data === undefined) return;
+  if (!Array.isArray(data)) return;
+  if (data.length == 0) return;
 
   const tbody = document.getElementById('tbcontant');
   tbody.innerHTML = null;
   data.forEach(league => {
-    const tr = document.createElement("tr");
+    const tr = document.createElement('tr');
 
-    const td1 = document.createElement("td");
-    td1.classList.add("col-40-1");
-    
-  
-    const teamLink = document.createElement('a')
-    
-    teamLink.setAttribute("href", `/leagues/teams/${league.league_id}`);
-    
-    const span = document.createElement("span");
+    const td1 = document.createElement('td');
+    td1.classList.add('col-40-1');
+
+    const teamLink = document.createElement('a');
+
+    teamLink.setAttribute('href', `/leagues/teams/${league.league_id}`);
+
+    const span = document.createElement('span');
     span.innerText = league.name;
-  
-    const imgdiv = document.createElement("div");
-    const img = document.createElement("img");
+
+    const imgdiv = document.createElement('div');
+    const img = document.createElement('img');
     img.src = league.logo;
-    img.setAttribute("alt", league.name);
-  
-  
+    img.setAttribute('alt', league.name);
+
     imgdiv.appendChild(img);
     teamLink.appendChild(imgdiv);
     teamLink.appendChild(span);
     td1.appendChild(teamLink);
-  
-    const td2 = document.createElement("td");
-    td2.classList.add("col-33");
-    td2.classList.add("text-center");
-    const span2 = document.createElement("span");
-    span2.innerText = league.season_start + " / " + league.season_end;
+
+    const td2 = document.createElement('td');
+    td2.classList.add('col-33');
+    td2.classList.add('text-center');
+    const span2 = document.createElement('span');
+    span2.innerText = league.season_start + ' / ' + league.season_end;
     td2.appendChild(span2);
-  
+
     tr.appendChild(td1);
     tr.appendChild(td2);
-  
+
     tbody.appendChild(tr);
   });
 }
 
+function GetTeams() {
+  let str = window.location.href;
 
+  let leagId = str.slice(str.lastIndexOf('/') + 1);
 
-function GetTeams()
-{
-    let str =window.location.href;
- 
+  apicall('POST', `/leagues/teams/${leagId}`, res => {
+    console.log(JSON.parse(res));
+    let data = JSON.parse(res).api.teams;
+    console.log(data);
 
-let leagId = str.slice(str.lastIndexOf('/')+1)
+    const tbody = document.getElementById('tbcontant');
+    tbody.innerHTML = null;
 
+    data.forEach(team => {
+      const tr = document.createElement('tr');
 
-apicall('POST', `/leagues/teams/${leagId}`, res => {
-  console.log(JSON.parse(res));
-  let data = JSON.parse(res).api.teams;
-  console.log(data);
+      const td1 = document.createElement('td');
+      td1.classList.add('col-40-1');
+      const span = document.createElement('span');
+      span.innerText = team.name;
 
-  const tbody = document.getElementById('tbcontant');
-  tbody.innerHTML = null;
+      td1.appendChild(span);
 
+      const img = document.createElement('img');
+      img.src = team.logo;
+      img.setAttribute('alt', 'logo');
+      td1.appendChild(img);
 
-  data.forEach(team => {
+      const td2 = document.createElement('td');
+      td2.classList.add('col-33');
+      const span2 = document.createElement('span');
+      span2.innerText = team.venue_name;
+      td2.appendChild(span2);
 
-  const tr =document.createElement('tr')
-    
-    const td1 =document.createElement('td')
-    td1.classList.add('col-40-1')
-    const span = document.createElement('span')
-    span.innerText = team.name;
-    
-    td1.appendChild(span)
-    
-    const img = document.createElement('img');
-    img.src = team.logo;
-    img.setAttribute('alt','logo')
-    td1.appendChild(img)
-    
+      const td3 = document.createElement('td');
+      td2.classList.add('col-33');
+      const span3 = document.createElement('span');
+      span3.innerText = team.venue_city;
+      td3.appendChild(span3);
 
-     
-    const td2 =document.createElement('td')
-    td2.classList.add('col-33')
-    const span2 = document.createElement('span')
-    span2.innerText = team.venue_name;
-    td2.appendChild(span2)
-     
-    const td3 =document.createElement('td')
-    td2.classList.add('col-33')
-    const span3 = document.createElement('span')
-    span3.innerText = team.venue_city;
-    td3.appendChild(span3)
-    
-    
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
 
-    tr.appendChild(td1)
-    tr.appendChild(td2)
-    tr.appendChild(td3)
-    
-    
-   tbody.appendChild(tr)
+      tbody.appendChild(tr);
+    });
   });
 
-});
-
-///
-
+  ///
 }
