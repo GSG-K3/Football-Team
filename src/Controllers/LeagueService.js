@@ -6,8 +6,6 @@ const leagueOfCuntry = (error, response, body) => {
   }
 
   if (!error && response.statusCode == 200) {
-    console.log('inside respons');
-
     const info = JSON.parse(body);
     console.log(info);
     return info;
