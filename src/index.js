@@ -127,8 +127,31 @@ app.get('/leagues/:country/season/:season',(req,res)=>{
 
   apiCall(
     `https://api-football-v1.p.rapidapi.com/v2/leagues/type/league/${req.params.country}/${req.params.season}`,
-    (a, b, c) => res.send(leg(a, b, c))
-  );
+    (a, b, c) => res.send(leg(a, b, c)));
+
+})
+
+app.get('/leagues/teams/:leagueId',(req,res)=>{
+console.log("Get  :" , req.params.leagueId)
+  
+    res.sendFile(path.join(__dirname, '..', 'public','leages-teams.html'))
+})
+
+
+
+
+app.post('/leagues/teams/:leagueId',(req,res) =>{
+    console.log("post  :" , req.params.leagueId)
+
+  apiCall(
+        `https://api-football-v1.p.rapidapi.com/v2/teams/league/${req.params.leagueId}`,
+        (a, b, c) => res.send(leg(a, b, c)));
+
+
+
+
+
+
 
 
 })
